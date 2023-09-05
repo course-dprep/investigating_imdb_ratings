@@ -1,24 +1,36 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11726039&assignment_repo_type=AssignmentRepo)
-# Example of reproducible research workflow 
+---
+contributors:
+  - Lex Vogels
+  - Floris van Berloo
+  - Kay van der Linden
+  - Thomas Gadellaa
+  - Mehmet Eren Erdoğan
+---
 
-This is a basic example repository using Gnu make for a reproducible research workflow, as described in detail here: [tilburgsciencehub.com](http://tilburgsciencehub.com/). 
+# Investigating the imdb Ratings for Movies & Series
 
-The main aim of this to have a basic structure, which can be easily adjusted to use in an actual project.  In this example project, the following is done: 
-1. Download and prepare data
-2. Run some analysis
-3. Present results in a final pdf generated using LaTeX
+## Project Description
 
-## Dependencies
-- R 
-- R packages: `install.packages("stargazer")`
-- [Gnu Make](https://tilburgsciencehub.com/get/make) 
-- [TeX distribution](https://tilburgsciencehub.com/get/latex/?utm_campaign=referral-short)
-- For the `makefile` to work, R, Gnu make and the TeX distribution (specifically `pdflatex`) need to be made available in the system path 
-- Detailed installation instructions can be found here: [tilburgsciencehub.com](http://tilburgsciencehub.com/)
+Understanding the nuances of movie and series ratings is crucial in the digital era of entertainment, where rating systems have a significant impact. The choices of viewers, distributors, and content creators are influenced by these ratings. A complex interaction of factors, such as content quality, marketing, and cultural context, exists under this rating.
 
+This project aims to deliver useful insights for content makers, distributors, and consumers navigating the dynamic environment of movies and series by utilizing extensive data and rigorous statistical analysis.
 
-## Notes
-- `make clean` removes all unncessary temporary files. 
-- Tested under Linux Mint (should work in any linux distro, as well as on Windows and Mac) 
-- IMPORTANT: In `makefile`, when using `\` to split code into multiple lines, no space should follow `\`. Otherwise Gnu make aborts with error 193. 
-- Many possible improvements remain. Comments and contributions are welcome!
+## Data Availability and Provenance Statements
+
+The project benefits from open-source data that's available on https://datasets.imdbws.com.
+
+### Summary of Availability
+
+- [x] All data **are** publicly available.
+
+### Details on each Data Source
+
+Will be updated soon.
+
+## Dataset list
+
+Will be updated soon.
+
+## Computational requirements
+
+Will be updated soon.
