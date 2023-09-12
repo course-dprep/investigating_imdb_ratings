@@ -3,9 +3,43 @@ title: "R_markdown_team8"
 output: html_document
 date: "2023-09-12"
 ---
+Loading the 'tidyverse' package
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+Downloading the datasets (meran)
+
+```{r}
+
+```
+
+
+reading the data set: title_basics (meran)
+
+```{r}
+
+```
+
+
+reading the data set: title_ratings (lex)
+
+```{r}
+
+```
+
+reading the data set: title_basics_ratings (Thomas)
+
+```{r}
+
+```
+
+
+reading the data set: name_basics (Floris)
+
+```{r}
+
 ```
 
 ## R Markdown
