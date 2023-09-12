@@ -23,11 +23,52 @@ reading the data set: title_basics (meran)
 ```
 
 
-reading the data set: title_ratings (lex)
+reading the data set: title_ratings (Lex)
+
+**This dataset can be used to exlore and analyze the rating of the movies and series on IMDB**
+
+**The datasets are already have been downloaded so now we are going to read the dataset**
 
 ```{r}
+title_ratings <- read_tsv("../../data/dataset1/title.ratings.tsv.gz")
+```
+*now we are going to look at the dataset*
+```{r}
+view(title_ratings)
+```
+
+**explaining the dataset** 
+column 1: tconst
+*this is the identifier, each cell represents 1 serie/film*
+column2: averageRating
+*this is the averga rating the serie/film got*
+column 3:num_votes
+*This is the number of votes that contributed to the rating of the series or movie*
+
+**summary statistics about the variables : average rating and number of votes**
+```{r}
+summary(title_ratings$averageRating)
+summary(title_ratings$numVotes)
 
 ```
+
+**A histogram with the distribution of the averga ratings**
+```{r}
+hist(title_ratings$averageRating, main = "Distribution of Average Ratings", xlab = "Average Rating")
+```
+
+**Boxplot number of votes** #I do not know if this is really valuable so i want you opinions on this
+```{r}
+boxplot(title_ratings$numVotes, main = "Box Plot of number of votes")
+```
+
+**scatter plot of the relationship between the average rating and the nuber of votes**
+```{r}
+plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: Average Rating vs. Vote Count", 
+     xlab = "Average Rating", ylab = "Vote Count", pch = 16, col = "black")
+```
+
+**This was the information of for the data set title_ratings**
 
 reading the data set: title_basics_ratings (Thomas)
 
