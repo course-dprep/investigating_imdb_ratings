@@ -8,7 +8,7 @@ contributors:
 ---
 
 # Investigating the imdb Ratings for Movies & Series
-
+ 
 ## Project Description
 
 Understanding the nuances of movie and series ratings is crucial in the digital era of entertainment, where rating systems have a significant impact. The choices of viewers, distributors, and content creators are influenced by these ratings. A complex interaction of factors, such as content quality, marketing, and cultural context, exists under this rating.
