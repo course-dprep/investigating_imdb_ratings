@@ -8,7 +8,7 @@ Contributors:
 ---
 
 # Investigating the imdb Ratings for Movies & Series
-
+ 
 ## Project Description
 
 In the current digital era of entertainment, where rating systems have a significant impact, it is crucial to understand which factors might influence these ratings. It is clear that external factors such as viewer's satisfaction, perceived quality of the title (movie or tv series), and the place of watching the title might all affect the rating given by the viewer. However, from the perspective of creators, it might be way more interesting to look at factors that can internally be decided. What is the influence of certain actors on title ratings? Which genres tend to be rated higher? And does the contemporary consumer enjoy longer or shorter titles? 
