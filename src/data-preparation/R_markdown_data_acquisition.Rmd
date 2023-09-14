@@ -1,27 +1,88 @@
 ---
-title: "R_markdown_team8"
+title: "Team 8 R Markdown Document"
 output: html_document
 date: "2023-09-12"
+author: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
 ---
-Loading the 'tidyverse' package
 
-```{r setup, include=FALSE}
+# Group 8 Imdb Ratings Markdown
+
+## Introduction
+
+This is the Markdown document for group 8. Each member contributed on the markdown and did their own analysis about imdb datasets. After each individual presented their analysis, a joint markdown file is created.
+
+## Pre - Analysis
+
+Loading the `tidyverse` package:
+
+```{r setup, echo = F, warning = F, error = F, message = F}
 library(tidyverse)
 ```
 
-Downloading the datasets (meran)
+If you have your current working directory where your markdown file is, `setwd('../../data/dataset1')` should direct you to the databases. But since each database is in another folder, a function can come handy.
 
 ```{r}
+wd_changer <- function(x) {
+  wd <- str_c('../../data/dataset', x)
+  setwd(wd)
+} #I think this easy function is pretty self-explanatory.
+
+#Let's try if the function works.
+
+wd_changer(3)
+
+getwd() 
+
+#Apparently it does!
+
+``` 
+
+
+### Dataset: title.basics.tsv.gz
+
+```{r message=FALSE, warning=FALSE}
+
+wd_changer(2) #My file is at the second database folder.
+
+prototype <- T 
+
+if(prototype == T) {
+  title_basics <- read_tsv('title.basics.tsv.gz', n_max = 200)
+} #Loading only first 200 rows of the data just for exploratory data analysis.
 
 ```
 
-
-reading the data set: title_basics (meran)
+After this first step, let's take a look at the variables and produce some explarotary plots.
 
 ```{r}
 
+dim(title_basics)
+
+str(title_basics)
+
+summary(title_basics)
+
 ```
 
+In this dataset, there are 9 columns.
+
+1. `tconst` is a identifier tag which other tables also possess. 
+2. `titleType` is read in as a character column but can also be treated as a **factor**. It contains information about the type of the visual product such as a short-movie, a series or a movie.
+3. `primaryTitle` is a character column for the final title that the visual product was released in.
+4. `originalTitle` is also a character column but it is the first title that the visual product had. It might contain foreign language titles or the original title draft before it got changed to something else.
+5. `isAdult` is a numeric variable which tells if the product is for adults or not. If it is for adults, the value is *1*. If not, the value is *0*.
+6. `startYear` is the release year of the product. This prototype only includes earliest years so maximum and minimum values can be obtained if the whole database is loaded in.
+7. `endYear` this character column is only viable for TV Series. It keeps track how many years that the series has lasted. For all other media, the value is *\N*.
+8. `runtimeMinutes` is a character column but **it should actually be a numeric one**. It represents how long the product is.
+9. `genres` is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, **the values should be filtered and separated for further analysis.**
+
+#### Main Takeaways
+
+* titleType can be converted into a factor,
+* isAdult should be filtered while doing further analysis,
+* endYear is unnecessary for movies,
+* runtimeMinutes should be converted into an integer,
+* genres should be filtered and split for a tidier frame.
 
 reading the data set: title_ratings (lex)
 
@@ -29,7 +90,7 @@ reading the data set: title_ratings (lex)
 
 ```
 
-reading the data set: title_basics_ratings (Thomas)
+reading the data set: title_principles (Thomas)
 
 ```{r}
 
