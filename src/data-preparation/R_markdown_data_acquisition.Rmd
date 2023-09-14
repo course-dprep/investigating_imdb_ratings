@@ -33,7 +33,7 @@ wd_changer(3)
 
 getwd() 
 
-#Apparently it does!
+#Apparently, it does!
 
 ``` 
 
