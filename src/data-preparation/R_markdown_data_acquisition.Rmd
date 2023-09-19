@@ -137,9 +137,57 @@ reading the data set: title_principles (Thomas)
 
 
 ```{r}
+title_principals <- read_tsv("../../dataset1/title.principals.tsv")
+```
+
+```{r}
+view(title_principals)
+```
+
+Some calculations and code to get a feel for the dataset
+```{r}
+# Display unique values in the 'job' column
+unique_jobs <- unique(title_principals$job)
+
+# Count how many times each unique value appears
+job_counts <- table(title_principals$job)
+
+# Create a data frame to display the results
+job_counts_df <- data.frame(Job = unique_jobs, Count = job_counts)
+
+# Print the unique job values and their counts
+print(job_counts_df)
 
 ```
 
+Next we look at the number of unique titles that are in the dataset
+
+```{r}
+# Calculate the number of unique values in the 'tconst' column
+num_unique_tconst <- length(unique(title_principals$tconst))
+
+# Print the number of unique 'tconst' values
+print(num_unique_tconst)
+```
+
+We do the same for the crew of the titles
+```{r}
+# Calculate the number of unique values in the 'nconst' column
+num_unique_nconst <- length(unique(title_principals$nconst))
+
+# Print the number of unique 'nconst' values
+print(num_unique_nconst)
+```
+
+In this dataset there are 6 columns
+1. 'tconst' is a unique alphanumeric identifier assigned to a movie. This identifier can be used in order to merge with other datasets provided by IMDb. There are 9,095,203 unique titles in this dataset.
+2. 'ordering' refers to a number to uniquely identify rows for a given titleId. 
+3. 'nconst' is similar to the 'tconst', the only difference is that the 'nconst' identifies crew/cast. There are 5,088,146 unique persons in this dataset.
+4. 'job' refers to the job of the person ('nconst') fullfiled in a specific title ('tconst').
+5. 'characters' shows the name of the character that is played by the respective person. If this is inapplicable the given value is '\N'
+
+Conclusion:
+This dataset does not consit of any variable that, on it self, ads to the relevance of our research. However, this dataset could serve a purpose in merging different IMDb datasets. 
 
 reading the data set: name_basics (Floris)
 
