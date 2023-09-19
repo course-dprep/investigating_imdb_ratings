@@ -29,7 +29,7 @@ wd_changer <- function(x) {
 
 #Let's try if the function works.
 
-wd_changer(3)
+wd_changer(0)
 
 getwd() 
 
