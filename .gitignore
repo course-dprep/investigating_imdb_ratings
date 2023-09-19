@@ -6,3 +6,5 @@
 **.Rout
 *.csv
 *.tsv.gz
+*.tsv
+.DS_Store
