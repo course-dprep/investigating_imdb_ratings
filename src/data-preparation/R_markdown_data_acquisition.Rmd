@@ -189,28 +189,37 @@ In this dataset there are 6 columns
 Conclusion:
 This dataset does not consit of any variable that, on it self, ads to the relevance of our research. However, this dataset could serve a purpose in merging different IMDb datasets. 
 
-reading the data set: name_basics (Floris)
 
-```{r}
+
+**Dataset: title_name_basics**
+```{r setup, include = FALSE}
+
+title_name_basics <- read_tsv("name.basics.tsv.gz", n_max = 200)
+#Loading only first 200 rows of the data just for exploratory data analysis.
+View(title_name_basics)
+summary(title_name_basics)
 
 ```
 
-## R Markdown
+**In this dataset, there are 6 columns**
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Column 1: nconst
+*this is the identifier*
+Column 2: primaryName
+*is a character variable that states the full name of the person that contributed to a certain movie or series*
+Column 3: birthYear
+*is a numeric variable containing the year of birth from a person*
+Column 4: deathYear
+*is a numeric variable containing the year of passing. if the return value is /N, this means the person is still alive*
+Column 5: primaryProfession
+*this is de profession of the person. some people have multiple professions, which are all stored in one column. the columns are separated by comma's*
+Column 6: knownForTitles
+*these are the ID's of the movies the person participated in, stored in one column separated by comma's. these title ID's can also be found in the title_name_basics dataset.* 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+**Main takeaways**
+* In order to sample for actress/actor only, the primaryProfession column should be filtered
+* In order to connect this datatable to the title_name_basics datatable, the knownForTitles column should be destringed
+* birthYear and deathYear are not relevant for this research
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
