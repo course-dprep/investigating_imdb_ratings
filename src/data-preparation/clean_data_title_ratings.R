@@ -7,3 +7,7 @@ title_ratings <- read_tsv("../../data/datasets/title.ratings.tsv.gz")
 #filter for average ratings < 1 or > 10
 
 title_ratings<-title_ratings %>% filter(averageRating>=1 & averageRating<=10)
+
+#filter for NA in average rating and number of votes
+
+tilte_ratings <- title_ratings %>% filter(!is.na(averageRating), !is.na(numVotes ))
