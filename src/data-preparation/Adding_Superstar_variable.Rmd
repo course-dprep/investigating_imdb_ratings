@@ -1,0 +1,89 @@
+---
+title: "Adding starpower"
+output: html_document
+date: "2023-09-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading libraries
+
+```{r cars}
+library(tidyverse)
+library(dplyr)
+```
+
+## Loading the file
+The file has been provided by my thesis supervisor. The data is scraped the 13th of april 2023
+
+```{r}
+
+starPower <- read_csv("../../data/datasets/superstar_persons.csv")
+
+```
+
+##Getting a feel for the data
+First of all we find that the rank does not matchup with the number of variables.
+
+```{r}
+starPower %>%
+  summarize(min_rank = min(Rank),
+            max_rank = max(Rank),
+            min_earnings = min(earnings),
+            max_earnings = max(earnings))
+```
+
+Some names appear multiple times, however with different identifiers. This suggests that a person has fulfilled different roles and therefore gets another identifier.  
+
+```{r}
+
+starPower %>%
+  group_by(primaryName, Rank, earnings) %>%
+  filter(n() > 1)
+
+```
+
+After some research by typing the nconst of randomly selected actors directily into IMDb (https://www.imdb.com/name/nm.../) I found that the the different identifiers still lead to the same actor, often a slightly different page. The only thing dat differs is the column "primaryProfession".
+
+```{r}
+starPower %>%
+  filter(!grepl('actor|actress', primaryProfession, ignore.case = TRUE))
+
+```
+
+## Data cleaning
+As demonstrated by the table above, there are a multiple rows that do not contain actors and/or actresses, we delete these. This also helps to remove duplicate rows.
+
+```{r}
+starPowerClean <- starPower %>%
+  filter(category == 'actor')
+```
+
+Next we remove duplicate rows
+
+```{r}
+starPowerClean <- starPowerClean %>%
+  distinct(primaryName, Rank, earnings, .keep_all = TRUE)
+```
+
+Now we again look at some descriptive statistics of the cleaned dataset
+
+```{r}
+starPowerClean %>%
+  summarize(min_rank = min(Rank),
+            max_rank = max(Rank),
+            min_earnings = min(earnings),
+            max_earnings = max(earnings))
+```
+
+## Creating the new variable:
+Finally we create the new dummy variable where 1 = super star (Top 100 based on the rank) and 0 = not a superstar
+
+```{r}
+starPowerClean <- starPowerClean %>%
+  mutate(superstar = ifelse(Rank <= 100, 1, 0))
+```
+
+
