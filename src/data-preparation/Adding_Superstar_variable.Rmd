@@ -1,0 +1,59 @@
+---
+title: "Adding starpower"
+output: html_document
+date: "2023-09-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading libraries
+
+```{r cars}
+library(tidyverse)
+library(dplyr)
+```
+
+## Loading the file
+The file has been provided by my thesis supervisor. The data is scraped from... in ...
+
+```{r}
+
+starPower <- read_csv("../../data/datasets/superstar_persons.csv")
+
+```
+
+##Getting a feel for the data
+We find a few noteworthy points:
+* First of all we find that the rank does not matchup with the number of variables.
+* Some names appear multiple times, hower with different identifiers. This suggests that a person has fulfilled different roles and therefore gets another identifier. 
+
+```{r}
+starPower %>%
+  summarize(min_rank = min(Rank),
+            max_rank = max(Rank),
+            min_earnings = min(earnings),
+            max_earnings = max(earnings))
+```
+
+## Finding duplicate rows 
+
+```{r}
+
+starPower %>%
+  group_by(primaryName, Rank, earnings) %>%
+  filter(n() > 1)
+
+```
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
