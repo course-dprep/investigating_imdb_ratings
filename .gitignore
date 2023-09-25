@@ -1,0 +1,11 @@
+*.log
+*.aux
+*.Rhistory
+.RData
+**gen/
+**.Rout
+*.csv
+*.tsv.gz
+*.tsv
+.DS_Store
+.Rproj.user
