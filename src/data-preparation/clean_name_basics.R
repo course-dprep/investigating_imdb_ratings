@@ -5,22 +5,22 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 # Load the data
-name.basics <- read_tsv("../../data/datasets/name_basics.tsv")
+name_basics <- read_tsv("../../data/datasets/name_basics.tsv")
 
 # Filtering for actor/actress only
-name.basics <- name.basics %>% mutate(primaryProfession = str_extract(primaryProfession, "actor|actress"))
+name_basics <- name_basics %>% mutate(primaryProfession = str_extract(primaryProfession, "actor|actress"))
 
 # Remove NA's
-name.basics <- na.omit(name.basics)
+name_basics <- na.omit(name_basics)
 
 # Delete the birthYear and deathYear column
-name.basics$deathYear <- NULL
-name.basics$birthYear <- NULL
+name_basics$deathYear <- NULL
+name_basics$birthYear <- NULL
 
 # Seperate the knownForTitles column
-name.basics <- name.basics %>%
+name_basics <- name_basics %>%
   separate_rows(knownForTitles, sep = ",")
 
 # Save the cleaned dataset
-write_tsv(name.basics, file = "../../data/datasets/name_basics_cleaned.tsv")
+write_tsv(name_basics, file = "../../data/datasets/name_basics_cleaned.tsv")
 

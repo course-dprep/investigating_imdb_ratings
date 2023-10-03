@@ -19,4 +19,5 @@ starPower <- starPower %>%
 starPower <- starPower %>%
   mutate(superstar = ifelse(Rank <= 100, 1, 0))
 
+#Save clean dataset
 write_csv(starPower, "../../data/datasets/starPower_cleaned.csv")
