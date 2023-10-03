@@ -1,20 +1,24 @@
-name_basics_starPower_merged_cleaned.tsv: clean_namebasics_starPower.R name_basics_starPower_merged.tsv
+DATA = ../../data/datasets
+
+all: $(DATA)/starPower.csv $(DATA)/title_basics.tsv $(DATA)/title_ratings.tsv $(DATA)/name_basics.tsv $(DATA)/title_basics_cleaned.tsv $(DATA)/title_rating_cleaned.tsv $(DATA)/name_basics_cleaned.tsv $(DATA)/starPower_cleaned.csv $(DATA)/name_basics_starPower_merged.tsv $(DATA)/name_basics_starPower_merged_cleaned.tsv
+
+../../data/datasets/name_basics_starPower_merged_cleaned.tsv: ../../data/datasets/name_basics_starPower_merged.tsv clean_namebasics_starPower.R
 	Rscript clean_namebasics_starPower.R
 
-name_basics_starPower_merged.tsv: merge_namebasics_starPower.R starPower_cleaned.csv name_basics_cleaned.tsv
+../../data/datasets/name_basics_starPower_merged.tsv: ../../data/datasets/starPower_cleaned.csv ../../data/datasets/name_basics_cleaned.tsv merge_namebasics_starPower.R
 	Rscript merge_namebasics_starPower.R
 
-starPower_cleaned.csv: clean_starpower.R starPower.csv
+../../data/datasets/starPower_cleaned.csv: ../../data/datasets/starPower.csv clean_starpower.R
 	Rscript clean_starpower.R
 
-name_basics_cleaned.tsv: clean_name_basics.R name_basics.tsv
+../../data/datasets/name_basics_cleaned.tsv: ../../data/datasets/name_basics.tsv clean_name_basics.R
 	Rscript clean_name_basics.R
 
-title_rating_cleaned.tsv: clean_title_ratings.R title_ratings.tsv
+../../data/datasets/title_rating_cleaned.tsv: ../../data/datasets/title_ratings.tsv clean_title_ratings.R
 	Rscript clean_title_ratings.R
 
-title_basics_cleaned.tsv: clean_title_basics.R title_basics.tsv
+../../data/datasets/title_basics_cleaned.tsv: ../../data/datasets/title_basics.tsv clean_title_basics.R
 	Rscript clean_title_basics.R
 
-starPower.csv title_basics.tsv title_ratings.tsv name_basics.tsv: download.R
+../../data/datasets/starPower.csv ../../data/datasets/title_basics.tsv ../../data/datasets/title_ratings.tsv ../../data/datasets/name_basics.tsv: download.R
 	Rscript download.R
