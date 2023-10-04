@@ -5,7 +5,7 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 #loading the file
-starPower <- read_csv("../../data/datasets/starPower.csv")
+starPower <- read_csv("../../data/starPower.csv")
 
 #Filtering for actors
 starPower <- starPower %>%
@@ -20,4 +20,4 @@ starPower <- starPower %>%
   mutate(superstar = ifelse(Rank <= 100, 1, 0))
 
 #Save clean dataset
-write_csv(starPower, "../../data/datasets/starPower_cleaned.csv")
+write_csv(starPower, "../../gen/data-preparation/temp/starPower_cleaned.csv")

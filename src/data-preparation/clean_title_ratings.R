@@ -1,7 +1,7 @@
 #Setup
 library(tidyverse)
 #load the dataset:
-title_ratings <- read_tsv("../../data/datasets/title_ratings.tsv")
+title_ratings <- read_tsv("../../data/title_ratings.tsv")
 
 #Data preparation Title.ratings data set
 
@@ -14,4 +14,4 @@ title_ratings <- title_ratings %>% filter(averageRating>=1 & averageRating<=10)
 tilte_ratings <- title_ratings %>% filter(!is.na(averageRating), !is.na(numVotes ))
 
 #Save cleaned dataset
-write_tsv(title_ratings, "../../data/datasets/title_ratings_cleaned.tsv")
+write_tsv(title_ratings, "../../gen/data-preparation/temp/title_ratings_cleaned.tsv")

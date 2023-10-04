@@ -4,8 +4,8 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 #Read datasets
-starPower_cleaned <- read_csv("../../data/datasets/starPower_cleaned.csv")
-name_basics_cleaned <- read_tsv("../../data/datasets/name_basics_cleaned.tsv")
+starPower_cleaned <- read_csv("../../gen/data-preparation/temp/starPower_cleaned.csv")
+name_basics_cleaned <- read_tsv("../../gen/data-preparation/temp/name_basics_cleaned.tsv")
 
 #Merging
 #Merging the datasets via a right_join -> having clean data; this gives us a usable and workable starting point
@@ -16,7 +16,7 @@ name_basics_starpower_right <- name_basics_cleaned %>%
     by = c("nconst"))
 
 #Save merged dataset
-write_tsv(name_basics_starpower_right, "../../data/datasets/name_basics_starPower_merged.tsv")
+write_tsv(name_basics_starpower_right, "../../gen/data-preparation/input/name_basics_starPower_merged.tsv")
 
 
 ##

@@ -2,13 +2,13 @@
 
 library(tidyverse)
 
-name_basics_starPower_merged <- read_tsv('../../data/datasets/name_basics_starPower_merged.tsv')
+name_basics_starPower_merged <- read_tsv('../../gen/data-preparation/temp/name_basics_starPower_merged_cleaned.tsv')
 
-title_basics_ratings_merged <- read_tsv('../../data/datasets/title_basics_ratings_merged.tsv')
+title_basics_ratings_merged <- read_tsv('../../gen/data-preparation/input/title_basics_ratings_merged.tsv')
 
 # Merging
 
 final_merged_dataset <- title_basics_ratings_merged %>% left_join(name_basics_starPower_merged, 
                                                                   by = c('tconst' = 'knownForTitles'))
 
-write_tsv(final_merged_dataset, '../../data/datasets/final_merged_dataset.tsv')
+write_tsv(final_merged_dataset, '../../gen/data-preparation/output/final_merged_dataset.tsv')
