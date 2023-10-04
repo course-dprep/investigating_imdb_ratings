@@ -3,7 +3,7 @@
 library(tidyverse)
 library(readr)
 #Read dataset
-title_basics <- read_tsv("../../data/datasets/title_basics.tsv")
+title_basics <- read_tsv("../../data/title_basics.tsv")
 
 #filter for only Movies and tvSeries
 title_basics <- title_basics %>% 
@@ -44,6 +44,6 @@ title_basics <- title_basics %>% filter(isAdult == 0) %>% select(-isAdult) #Remo
 title_basics <- title_basics %>% select(-endYear)
 
 #Save cleaned dataset
-write_tsv(title_basics, "../../data/datasets/title_basics_cleaned.tsv")
+write_tsv(title_basics, "../../gen/data-preparation/temp/title_basics_cleaned.tsv")
 
 

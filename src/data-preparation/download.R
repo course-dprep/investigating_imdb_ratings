@@ -66,7 +66,7 @@ download_list <- list(
 )
 
 # Specify the relative path where you want to save the files
-destination_directory <- "../../data/datasets"
+destination_directory <- "../../data"
 
 # Loop through the download list and download/extract each file
 for (download_item in download_list) {
