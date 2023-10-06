@@ -5,8 +5,11 @@ OUTPUT = ../../gen/data-preparation/output
 
 all: $(OUTPUT)/final_merged_dataset.tsv
 
-$(OUTPUT)/final_merged_dataset.tsv: $(TEMP)/name_basics_starPower_merged_cleaned.tsv $(INPUT)/title_basics_ratings_merged.tsv merge_all_final.R
+$(OUTPUT)/final_merged_dataset.tsv: $(TEMP)/name_basics_starPower_merged_cleaned.tsv $(INPUT)/title_basics_ratings_genre_merged.tsv merge_all_final.R
 	Rscript merge_all_final.R
+
+$(INPUT)/title_basics_ratings_genre_merged.tsv: $(INPUT)/title_basics_ratings_merged.tsv add_genre.R
+	Rscript add_genre.R
 
 $(INPUT)/title_basics_ratings_merged.tsv: $(TEMP)/title_ratings_cleaned.tsv $(TEMP)/title_basics_cleaned.tsv merge_title_basics_title_ratings.R
 	Rscript merge_title_basics_title_ratings.R
