@@ -19,6 +19,11 @@ Loading the `tidyverse` package:
 library(tidyverse)
 ```
 
+### Comment lex 8-10-23, Do we need to create a cell here that downloads all the datasets?
+
+
+### Comment lex 8-10-23, I think this function can be deleted out of the report right?
+
 If you have your current working directory where your markdown file is, `setwd('../../data/dataset1')` should direct you to the databases. But since each database is in another folder, a function can come handy.
 
 ```{r}
@@ -38,21 +43,23 @@ getwd()
 ``` 
 
 
-### Dataset: title.basics.tsv.gz
+***Dataset: title.basics ***
 
 ```{r message=FALSE, warning=FALSE}
 
-wd_changer(2) #My file is at the second database folder.
+wd_changer(2) #My file is at the second database folder. 
 
-prototype <- T 
+### If the function is deleted this one can also be deleted
 
-if(prototype == T) {
-  title_basics <- read_tsv('title.basics.tsv.gz', n_max = 200)
-} #Loading only first 200 rows of the data just for exploratory data analysis.
+
+
+title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
+#Loading only first 200 rows of the data just for exploratory data analysis.
 
 ```
 
-After this first step, let's take a look at the variables and produce some explarotary plots.
+**After this first step, let's take a look at the variables and produce some explanatory plots**
+### Comment lex 8-10-23, above is stated that some explanatory plots will be created, but there are none created below right?
 
 ```{r}
 
@@ -63,20 +70,31 @@ str(title_basics)
 summary(title_basics)
 
 ```
+**In this dataset, there are 9 columns**
 
-In this dataset, there are 9 columns.
+column 1: tconst 
+*This is a identifier tag which other tables also possess* 
+column 2: `titleType` 
+*Read this in as a character column but can also be treated as a **factor**. It contains information about the type of the visual product such as a short-movie, a series or a movie*
+column 3: primaryTitle
+*This is a character column for the final title that the visual product was released in*
+column 4: originalTitle
+*This is also a character column but it is the first title that the visual product had. It might contain foreign language titles or the original title draft before it got changed to something else*
+column 5: isAdult
+*This is a numeric variable which tells if the product is for adults or not. If it is for adults, the value is '1'. If not, the value is '0' *
+column 6: startYear:
+*This is the release year of the product. This prototype only includes earliest years so maximum and minimum values can be obtained if the whole database is loaded in*
+column 7: endYear
+*this character column is only viable for TV Series. It keeps track how many years that the series has lasted. For all other media, the value is '\N'*
+column 8: runtimeMinutes
+*This is a character column but **it should actually be a numeric one**. It represents how long the product is*
+column 9: genres
+*This is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, the values should be filtered and separated for further analysis*
 
-1. `tconst` is a identifier tag which other tables also possess. 
-2. `titleType` is read in as a character column but can also be treated as a **factor**. It contains information about the type of the visual product such as a short-movie, a series or a movie.
-3. `primaryTitle` is a character column for the final title that the visual product was released in.
-4. `originalTitle` is also a character column but it is the first title that the visual product had. It might contain foreign language titles or the original title draft before it got changed to something else.
-5. `isAdult` is a numeric variable which tells if the product is for adults or not. If it is for adults, the value is *1*. If not, the value is *0*.
-6. `startYear` is the release year of the product. This prototype only includes earliest years so maximum and minimum values can be obtained if the whole database is loaded in.
-7. `endYear` this character column is only viable for TV Series. It keeps track how many years that the series has lasted. For all other media, the value is *\N*.
-8. `runtimeMinutes` is a character column but **it should actually be a numeric one**. It represents how long the product is.
-9. `genres` is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, **the values should be filtered and separated for further analysis.**
+###comment lex 08-10-23, Do we want to include what is underneath this comment? I think it should be modified to have the same construct as the "main takeaways" of the other datasets 
 
-#### Main Takeaways
+
+####Main Takeaways
 
 * titleType can be converted into a factor,
 * isAdult should be filtered while doing further analysis,
@@ -84,21 +102,20 @@ In this dataset, there are 9 columns.
 * runtimeMinutes should be converted into an integer,
 * genres should be filtered and split for a tidier frame.
 
-reading the data set: title_ratings (Lex)
 
-**This dataset can be used to exlore and analyze the rating of the movies and series on IMDB**
 
-**The datasets are already have been downloaded so now we are going to read the dataset**
+
+***Dataset: title_ratings ***
 
 ```{r}
-title_ratings <- read_tsv("../../data/dataset1/title.ratings.tsv.gz")
+title_ratings <- read_tsv("../../data/title.ratings.tsv.gz")
+# we are loading the whole dataset as we can make some plots
 ```
-*now we are going to look at the dataset*
 ```{r}
 view(title_ratings)
 ```
 
-**explaining the dataset** 
+**In this dataset, there are 3 columns**
 column 1: tconst
 *this is the identifier, each cell represents 1 serie/film*
 column2: averageRating
@@ -118,7 +135,9 @@ summary(title_ratings$numVotes)
 hist(title_ratings$averageRating, main = "Distribution of Average Ratings", xlab = "Average Rating")
 ```
 
-**Boxplot number of votes** #I do not know if this is really valuable so i want you opinions on this
+**Boxplot number of votes** 
+
+### comment lex 08-10-23, I think we can delete this one right?I do not know if this is really valuable.
 ```{r}
 boxplot(title_ratings$numVotes, main = "Box Plot of number of votes")
 ```
@@ -130,14 +149,19 @@ plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: 
      xlab = "Average Rating", ylab = "Vote Count", pch = 16, col = "black")
 ```
 
-**This was the information of for the data set title_ratings**
+**Main takeaways**
+* The variable Tconst can be used to merge this data set with the other datasets
+* looking at the plots, the variables 'averge rating' and 'number of votes' seems to be positively correlated
+
+
+###Comment lex 8-10-23 this whole section below can be deleted right? As we do not use this dataset.
 
 reading the data set: title_basics_ratings (Thomas)
 reading the data set: title_principles (Thomas)
 
 
 ```{r}
-title_principals <- read_tsv("../../dataset1/title.principals.tsv")
+title_principals <- read_tsv("../../data/title.principals.tsv")
 ```
 
 ```{r}
@@ -179,14 +203,15 @@ num_unique_nconst <- length(unique(title_principals$nconst))
 print(num_unique_nconst)
 ```
 
-In this dataset there are 6 columns
+**In this dataset, there are 6 columns**
+
 1. 'tconst' is a unique alphanumeric identifier assigned to a movie. This identifier can be used in order to merge with other datasets provided by IMDb. There are 9,095,203 unique titles in this dataset.
 2. 'ordering' refers to a number to uniquely identify rows for a given titleId. 
 3. 'nconst' is similar to the 'tconst', the only difference is that the 'nconst' identifies crew/cast. There are 5,088,146 unique persons in this dataset.
 4. 'job' refers to the job of the person ('nconst') fullfiled in a specific title ('tconst').
 5. 'characters' shows the name of the character that is played by the respective person. If this is inapplicable the given value is '\N'
 
-Conclusion:
+**Main takeaways**
 This dataset does not consit of any variable that, on it self, ads to the relevance of our research. However, this dataset could serve a purpose in merging different IMDb datasets. 
 
 
