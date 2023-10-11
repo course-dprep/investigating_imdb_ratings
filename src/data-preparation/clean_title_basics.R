@@ -16,14 +16,14 @@ title_basics <- title_basics %>%
 #Changing startYear to a numeric variable
 class(title_basics$startYear) #startYear is a character variable
 title_basics$startYear <- as.numeric(format(title_basics$startYear, format = "%Y"), na.rm = TRUE) #change startYear to a date variable
-print(title_basics$startYear) #what does the variable look like?
-class(title_basics$startYear) #check if it worked; it did!
+#print(title_basics$startYear) #what does the variable look like?
+#class(title_basics$startYear) #check if it worked; it did!
 
 #Adding variable for current year (numberic)
 current_time <- Sys.time() #save current time as a variable
 current_date <- as.Date(current_time, format = "%Y") #convert the current time to a date
 current_date <- as.numeric(format(current_date, format = "%Y"))
-print(current_date) #it worked
+#print(current_date) #it worked
 
 #Calculate years passed since release and create a new variable for this
 title_basics <- title_basics %>%
