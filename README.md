@@ -55,10 +55,15 @@ git clone https://github.com/{your username}/team-project-team_8
 make
 ```
 4. In our repository, make is structured as follows:
+
 a. Firstly, there are three makefiles. The makefile in the root repository starts data-preparation, and analysis.
-![Makefiles structure](gen/paper/input/makefile structure (2).jpg)
+```{r, echo=FALSE}
+knitr::include_graphics("gen/paper/input/makefile structure (2).jpg")
+``` 
+
 b. The data-preparation makefile follows the following structure, ensuring that everything is cleaned and merged properly step-by-step:
 ![Data preparation structure](gen/paper/input/makefile structure.jpg)
+
 c. Finally, analysis is done according to the structure below:
 ![Analysis structure](gen/paper/input/makefile structure (1).jpg)
 
