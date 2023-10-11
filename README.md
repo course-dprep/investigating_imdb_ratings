@@ -1,10 +1,10 @@
 ---
 Contributors:
-  - Lex Vogels
-  - Floris van Berloo
-  - Kay van der Linden
-  - Thomas Gadellaa
-  - Mehmet Eren Erdoğan
+- Lex Vogels
+- Floris van Berloo
+- Kay van der Linden
+- Thomas Gadellaa
+- Mehmet Eren Erdoğan
 ---
 
 # Investigating the predictors of IMDb Ratings for Movies & Series
@@ -36,32 +36,33 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
 4. **Star power**
   This dataset will be used to compute the average ranking of all the ranked actors in the movie/series. Additionally, we will create a dummy variable for whether actors are considered "super stars".
 
-## Dataset list
+## Dataset list and variable structure of final dataset
 
 1. title_basics.tsv
 2. title_ratings.tsv
 3. name_basics.tsv
 4. starPower.csv 
 
-## Computational requirements
+## Running the code
+To run the code, follow these instructions:
+1. Fork this repository
+2. Open your command line / terminal and run the following code:
+```
+git clone https://github.com/{your username}/team-project-team_8
+```
+3. Set your working directory to `team-project-team_8` and run the following command:
+```
+make
+```
+4. In our repository, make is structured as follows:
+a. Firstly, there are three makefiles. The makefile in the root repository starts data-preparation, and analysis.
+![Makefiles structure](gen/paper/input/makefile structure (2).jpg)
+b. The data-preparation makefile follows the following structure, ensuring that everything is cleaned and merged properly step-by-step:
+![Data preparation structure](gen/paper/input/makefile structure.jpg)
+c. Finally, analysis is done according to the structure below:
+![Analysis structure](gen/paper/input/makefile structure (1).jpg)
 
-Multiple steps are required before we can start analysing the data extracted. What follows is a short summary of steps required.
-1. Download all four datasets seperately.
-2. Investigate the data, which we have documented in an RMarkdown file.
-3. For each dataset, clean the data and prepare for merging.
-    
-    a. Title basics: delete duplicates, delete columns that will not be used, filter on only movies and tv series (title type), and create dummy variables where needed (genres). Additionally, change the "startYear" variable to a variable that shows us the number of years since it was released (numeric). We also remove "isAdult" movies, as we are not interested in these titles. Finally, we remove the "Original title" column and keep the "Primary title" column.
-    
-    b. Title ratings: delete titles that have an incorrect ratings, as ratings should be somewhere between 1 and 10. Additionally, we remove titles that do not have any rating.
-    
-    c. Name basics: delete the columns that will not be used (birth year and death year). Furthermore, we filter "primary profession" for actors and actresses only and the "known for titles" variable is split, such that each title is displayed on a row.
-    
-    d. Star power: Filter on "actor" category only (actors and actresses) and remove duplicates. Additionally, we add a "superstar" dummy variable for actors/actresses that have a ranking of 1-100. 
-4. Merge dataset "title basics" with "title ratings" and merge dataset "name basics" with "star power".
-5. We do some additional cleaning:
-    
-    a. Title basics & Title ratings: add a dummy variable for five of the most common genres: "Drama", "Comedy", "Documentary", "Romance", and "Action". In future research, this list can easily be extended with more genres that are indicated by IMDb.
-    b. Name basics & Star power: for each movie/series, we compute the average ranking of all the actors/actresses' in the title.
-6. Merge two cleaned and merged datasets described above, which will result in one final dataset that can be used for analysis.
-7. Sample the final dataset to an X number of rows (researchers who replicate should decide on sampling when doing analysis), such that analysis can be done easily.
-8. Run the analyses, using the variables previously described.
+5. To clean the data of all raw and data files created during the process, run the following code in the command line / terminal: 
+```
+make clean
+```
