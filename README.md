@@ -57,15 +57,16 @@ make
 4. In our repository, make is structured as follows:
 
 a. Firstly, there are three makefiles. The makefile in the root repository starts data-preparation, and analysis.
-```{r, echo=FALSE}
-knitr::include_graphics("gen/paper/input/makefile structure (2).jpg")
-``` 
+
+![Makefiles](src/paper/makefile_structure.jpg)
 
 b. The data-preparation makefile follows the following structure, ensuring that everything is cleaned and merged properly step-by-step:
-![Data preparation structure](gen/paper/input/makefile structure.jpg)
+
+![Data preparation structure](src/paper/dataprep_structure.jpg)
 
 c. Finally, analysis is done according to the structure below:
-![Analysis structure](gen/paper/input/makefile structure (1).jpg)
+
+![Analysis structure](src/paper/analysis_structure.jpg)
 
 5. To clean the data of all raw and data files created during the process, run the following code in the command line / terminal: 
 ```
