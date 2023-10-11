@@ -1,4 +1,10 @@
 ---
+output:
+  html_document: default
+  pdf_document: default
+---
+git fetch origin
+git checkout 121-add-star_person-dataset-to-rmarkdown-analysis---
 title: "Team 8 R Markdown Document"
 output: html_document
 date: "2023-09-12"
@@ -247,4 +253,64 @@ Column 6: knownForTitles
 * birthYear and deathYear are not relevant for this research
 
 
+***Dataset: starPower.csv ***
 
+```{r}
+
+starpower <- read_csv("../../data/starPower.csv")
+
+```
+
+The starpower dataset contains 6 columns:
+* nconst: This column serves as a unique IMDb identifier for distinguishing various members of a title's crew or cast.
+* primaryName: As the name suggests, this column contains the primary names of individuals.
+* primaryProfession: This column, too, is self-explanatory. It's worth noting that a person may possess multiple professions, which can result in their appearance in the dataset multiple times.
+* Rank: The "Rank" column specifies the global ranking of the individual at the time of data scraping. For more details, please consult the Readme.
+* Earnings: This column displays the earnings of each respective individual in USD.
+* Category: The "Category" column simplifies the "primaryProfession" column by categorizing individuals into either the "actor" or "director" category.
+
+Namely the columns 'Rank' and 'Earnings' prove interseting for futher statistical analysis. Therefore we now perform a view plot to gain insights in the dataset.
+
+```{r}
+# Create the box plot
+starpower %>%
+  ggplot(aes(y = Rank)) +
+  geom_boxplot() +
+  labs(title = "Box Plot of Rank",
+       y = "Rank") +
+  theme_minimal()
+```
+
+eventhough the box plot goes from 1 to 15000, we see that most actors rank somewhere between 2300 - 7300 in the world.
+
+Next lets take a look at the earnings column
+
+```{r}
+starpower %>%
+  filter(!is.na(earnings), earnings < 1000000) %>% # Adjust the threshold as needed
+  ggplot(aes(x = earnings)) +
+  geom_histogram(binwidth = 10000, fill = "blue", color = "black") +
+  labs(title = "Histogram of Earnings",
+       x = "Earnings (in USD)",
+       y = "Frequency") +
+  theme_minimal()
+
+```
+
+Here we can see that a majority of the stars earn well below 250k and that the amount of stars decreases as the earnings get higher generally.
+
+Next up we can investigate the relations between the rank and the earnings. We will do this via a correlation matrix.
+
+```{r}
+# Filter out rows with missing values in "earnings" and "Rank"
+starpower <- starpower %>% filter(!is.na(earnings), !is.na(Rank))
+
+# Calculate the correlation matrix
+correlation_matrix <- cor(starpower$earnings, starpower$Rank)
+
+# Print the correlation coefficient
+cat("Correlation between Earnings and Rank:", correlation_matrix)
+
+```
+
+The correlation coefficient of -0.3321853 indicates a moderate negative relationship between 'Earnings' and 'Rank.' In practical terms, as individuals' earnings increase, their global rank tends to improve (lower rank numbers), and vice versa. This suggests that higher earnings are associated with better global ranks.
