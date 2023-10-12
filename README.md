@@ -35,6 +35,21 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
   From the Name basics dataset we will extract which actors/actresses are linked to which movie and/or tv series titles. In this way, we can analyse the effect of these people on the rating of a title. Therefore, the actor/actress will be one of the independent variables.
 4. **Star power**
   This dataset will be used to compute the average ranking of all the ranked actors in the movie/series. Additionally, we will create a dummy variable for whether actors are considered "super stars".
+  
+## Repository overview
+
+├── README.md
+├── makefile
+├── .gitignore
+├── data
+├── gen
+│   ├── analysis
+│   ├── data-preparation
+│   └── paper
+└── src
+    ├── analysis
+    ├── data-preparation
+    └── paper
 
 ## Dataset list and variable structure of final dataset
 
@@ -42,6 +57,29 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
 2. title_ratings.tsv
 3. name_basics.tsv
 4. starPower.csv 
+
+Listed below are all 17 variables after cleaning the datasets and running analyses
+
+|Variable            |Description                                                       |
+|--------------------|------------------------------------------------------------------|
+|tconst              |Identifier variable                                               |
+|averageRating       |The rating of a TV series/movie                                   |
+|numvotes            |The number of votes on the rating                                 |
+|titleType           |Specifies whether it is a TV series or a movie                    |
+|primaryTitle        |Title of a TV series/movie                                        |
+|startYear           |Year of release                                                   |
+|runtimeMinutes      |Duration of a TV series/movie in minutes                          |
+|genres              |All different genres of the TV series/movie                       |
+|time_since_release  |Calculation of the current year (2023) - startYear                |
+|Drama               |Dummy variable for the genre Drama                                |
+|Comedy              |Dummy variable for the genre Comedy                               |
+|Documentary         |Dummy variable for the genre Documentary                          |
+|Romance             |Dummy variable for the genre Romance                              |
+|Action              |Dummy variable for the genre Action                               |
+|Other               |Dummy variable for the genre Other                                |
+|mean_ranking        |The ranking of an actor according to IMDB data                    |
+|is_superstar        |Dummy variable for superstars, according to the starPower dataset |
+
 
 ## Running the code
 To run the code, follow these instructions:
