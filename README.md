@@ -30,7 +30,7 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
 1. **Title basics**
   From the Title basics dataset we use numerous columns; either as independent variable, moderator, or control variable. Firstly, *Runtime* and *Genres* will be used as two of our independent variables in our research. Additionally, *Title Type* will function as a moderator (*movies* vs. *tv series*). Finally, we are using the year the title was launched as a control variable, because, for example, titles published longer ago have generally received more reviews from so-called "laggards" (late adopters), which might result in lower average ratings than titles that have been published very recently.
 2. **Title ratings**
-  The Title ratings dataset forms the basis for our dependent variable *Average Rating*, while *Number of Votes* can and will be used as a threshhold for movies & series we consider in our analysis.
+  The Title ratings dataset forms the basis for our dependent variable *Average Rating*, while *Number of Votes* can and will be used in our analysis.
 3. **Name basics**
   From the Name basics dataset we will extract which actors/actresses are linked to which movie and/or tv series titles. In this way, we can analyse the effect of these people on the rating of a title. Therefore, the actor/actress will be one of the independent variables.
 4. **Star power**
