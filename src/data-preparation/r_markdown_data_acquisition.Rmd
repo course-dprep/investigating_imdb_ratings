@@ -185,7 +185,8 @@ starpower <- read_csv("../../data/starPower.csv")
 
 ```
 
-The starpower dataset contains 6 columns:
+**The starpower dataset contains 6 columns**
+
 Column 1: nconst
 *This column serves as a unique IMDb identifier for distinguishing various members of a title's crew or cast.*
 Column 2: primaryName 
@@ -199,9 +200,7 @@ Column 5: Earnings
 Column 6: Category
 *The "Category" column simplifies the "primaryProfession" column by categorizing individuals into either the "actor" or "director" category.*
 
-The variable nconst can be used for merging it with the other datasets
-The columns 'Rank' and 'Earnings' prove interseting for futher statistical analysis. Therefore we now perform a view plot to gain insights in the dataset.
-
+*box plot of the Rank variable*
 ```{r}
 # Create the box plot
 starpower %>%
@@ -212,10 +211,7 @@ starpower %>%
   theme_minimal()
 ```
 
-eventhough the box plot goes from 1 to 15000, we see that most actors rank somewhere between 2300 - 7300 in the world.
-
-Next lets take a look at the earnings column
-
+*Histogram of the earnings column*
 ```{r}
 starpower %>%
   filter(!is.na(earnings), earnings < 1000000) %>% # Adjust the threshold as needed
@@ -228,10 +224,7 @@ starpower %>%
 
 ```
 
-Here we can see that a majority of the stars earn well below 250k and that the amount of stars decreases as the earnings get higher generally.
-
-Next up we can investigate the relations between the rank and the earnings. We will do this via a correlation matrix.
-
+*correlation matrix between the columns earnings and Rank*
 ```{r}
 # Filter out rows with missing values in "earnings" and "Rank"
 starpower <- starpower %>% filter(!is.na(earnings), !is.na(Rank))
@@ -244,4 +237,9 @@ cat("Correlation between Earnings and Rank:", correlation_matrix)
 
 ```
 
-The correlation coefficient of -0.3321853 indicates a moderate negative relationship between 'Earnings' and 'Rank.' In practical terms, as individuals' earnings increase, their global rank tends to improve (lower rank numbers), and vice versa. This suggests that higher earnings are associated with better global ranks.
+**Main takeaways**
+* The variable 'nconst' can be used for merging with the other datasets
+* The columns 'Rank' and 'earnings' prove interesting for futher statistical analysis.
+* Even though the box plot goes from 1 to 15,000, we see that most actors rank somewhere between 2,300 - 7,300 in the world.
+* From the histogram we can see that a majority of the stars earn well below 250k and that the amount of stars decreases as the earnings get higher generally.
+* The correlation coefficient of -0.332 indicates a moderate negative relationship between 'earnings' and 'Rank.' In practical terms, as individuals' earnings increase, their global rank tends to improve (lower rank numbers), and vice versa. This suggests that higher earnings are associated with better global ranks.
