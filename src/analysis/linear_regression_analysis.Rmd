@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-final_merged_dataset <- read_tsv ("../../data-preparation/output/final_merged_dataset.tsv")
+final_merged_dataset <- read_tsv ("../../gen/data-preparation/output/final_merged_dataset.tsv")
 final_merged_dataset 
 summary(final_merged_dataset)
 ```
