@@ -4,7 +4,7 @@ output:
   pdf_document: default
 title: "Team 8 R Markdown Document"
 date: "2023-09-12"
-author: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
+authors: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
 ---
 
 # Group 8 Imdb Ratings Markdown
@@ -150,7 +150,6 @@ plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: 
 ```{r setup, include = FALSE}
 
 title_name_basics <- read_tsv("../../data/name.basics.tsv.gz", n_max = 200)
-#Loading only first 200 rows of the data just for exploratory data analysis.
 View(title_name_basics)
 summary(title_name_basics)
 
@@ -173,7 +172,8 @@ Column 6: knownForTitles
 
 **Main takeaways**
 * In order to sample for actress/actor only, the primaryProfession column should be filtered
-* In order to connect this datatable to the title_name_basics datatable, the knownForTitles column should be destringed
+* Once the primaryProfession column is filtered, it can be merged with the starPower dataset (later specified in this Rmarkdown)
+* In order to connect this datatable to the title_name_basics datatable, the knownForTitles column should be destringed and split into different columns
 * birthYear and deathYear are not relevant for this research
 
 
