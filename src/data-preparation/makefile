@@ -33,4 +33,5 @@ $(TEMP)/title_basics_cleaned.tsv: $(DATA)/title_basics.tsv clean_title_basics.R
 	Rscript clean_title_basics.R
 
 $(DATA)/starPower.csv $(DATA)/title_basics.tsv $(DATA)/title_ratings.tsv $(DATA)/name_basics.tsv: download.R
+	R -e "dir.create('../../data', recursive = TRUE)"
 	Rscript download.R
