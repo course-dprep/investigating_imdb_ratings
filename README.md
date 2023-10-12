@@ -37,7 +37,7 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
   This dataset will be used to compute the average ranking of all the ranked actors in the movie/series. Additionally, we will create a dummy variable for whether actors are considered "super stars".
   
 ## Repository overview
-
+```
 ├── README.md
 ├── makefile
 ├── .gitignore
@@ -50,7 +50,7 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
     ├── analysis
     ├── data-preparation
     └── paper
-
+```
 ## Dataset list and variable structure of final dataset
 
 1. title_basics.tsv
