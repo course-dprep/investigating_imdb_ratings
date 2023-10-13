@@ -21,39 +21,9 @@ Loading the `tidyverse` package:
 library(tidyverse)
 ```
 
-### Comment lex 8-10-23, Do we need to create a cell here that downloads all the datasets?
-
-
-### Comment lex 8-10-23, I think this function can be deleted out of the report right?
-
-If you have your current working directory where your markdown file is, `setwd('../../data/dataset1')` should direct you to the databases. But since each database is in another folder, a function can come handy.
-
-```{r}
-wd_changer <- function(x) {
-  wd <- str_c('../../data/dataset', x)
-  setwd(wd)
-} #I think this easy function is pretty self-explanatory.
-
-#Let's try if the function works.
-
-wd_changer(0)
-
-getwd() 
-
-#Apparently, it does!
-
-``` 
-
-
 ***Dataset: title.basics ***
 
 ```{r message=FALSE, warning=FALSE}
-
-wd_changer(2) #My file is at the second database folder. 
-
-### If the function is deleted this one can also be deleted
-
-
 
 title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
 #Loading only first 200 rows of the data just for exploratory data analysis.
@@ -61,7 +31,6 @@ title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
 ```
 
 **After this first step, let's take a look at the variables and produce some explanatory plots**
-### Comment lex 8-10-23, above is stated that some explanatory plots will be created, but there are none created below right?
 
 ```{r}
 
@@ -93,9 +62,6 @@ column 8: runtimeMinutes
 column 9: genres
 *This is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, the values should be filtered and separated for further analysis*
 
-###comment lex 08-10-23, Do we want to include what is underneath this comment? I think it should be modified to have the same construct as the "main takeaways" of the other datasets 
-
-
 ####Main Takeaways
 
 * titleType can be converted into a factor,
@@ -103,9 +69,6 @@ column 9: genres
 * endYear is unnecessary for movies,
 * runtimeMinutes should be converted into an integer,
 * genres should be filtered and split for a tidier frame.
-
-
-
 
 ***Dataset: title_ratings ***
 
