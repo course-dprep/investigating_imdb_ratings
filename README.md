@@ -53,10 +53,13 @@ Analysing and predicting movies & tv series ratings, we use four seperate datase
 ```
 ## Dataset list and variable structure of final dataset
 
+In our research, we have used the following data sets:
 1. title_basics.tsv
 2. title_ratings.tsv
 3. name_basics.tsv
 4. starPower.csv 
+
+Prior to data cleaning, we have extensively explored the data sets. If you wish to learn more about the data sets, their variable structure, and summary statistics, please find the file here and knit the .Rmd to HTML format: src/data-preparation/r_markdown_data_acquisition.Rmd.
 
 Listed below are all 17 variables after cleaning the datasets and running analyses
 
