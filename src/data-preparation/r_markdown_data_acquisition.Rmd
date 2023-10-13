@@ -25,7 +25,7 @@ library(tidyverse)
 
 ```{r message=FALSE, warning=FALSE}
 
-title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
+title_basics <- read_tsv('../../data/title.basics.tsv', n_max = 200)
 #Loading only first 200 rows of the data just for exploratory data analysis.
 
 ```
@@ -71,7 +71,7 @@ column 9: genres
 ***Dataset: title_ratings ***
 
 ```{r}
-title_ratings <- read_tsv("../../data/title.ratings.tsv.gz")
+title_ratings <- read_tsv("../../data/title.ratings.tsv")
 # we are loading the whole dataset as we can make some plots
 ```
 ```{r}
@@ -108,9 +108,8 @@ plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: 
 * looking at the plots, the variables 'average rating' and 'number of votes' seems to be positively correlated
 
 ***Dataset: title_name_basics***
-```{r setup, include = FALSE}
-
-title_name_basics <- read_tsv("../../data/name.basics.tsv.gz", n_max = 200)
+```{r} 
+title_name_basics <- read_tsv("../../data/name.basics.tsv", n_max = 200)
 View(title_name_basics)
 summary(title_name_basics)
 
