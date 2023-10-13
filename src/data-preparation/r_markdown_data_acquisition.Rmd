@@ -31,7 +31,6 @@ title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
 ```
 
 **After this first step, let's take a look at the variables and produce some explanatory plots**
-
 ```{r}
 
 dim(title_basics)
@@ -41,8 +40,8 @@ str(title_basics)
 summary(title_basics)
 
 ```
-**In this dataset, there are 9 columns**
 
+**In this dataset, there are 9 columns**
 column 1: tconst 
 *This is a identifier tag which other tables also possess* 
 column 2: `titleType` 
@@ -62,8 +61,7 @@ column 8: runtimeMinutes
 column 9: genres
 *This is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, the values should be filtered and separated for further analysis*
 
-####Main Takeaways
-
+**Main Takeaways**
 * titleType can be converted into a factor,
 * isAdult should be filtered while doing further analysis,
 * endYear is unnecessary for movies,
@@ -109,7 +107,7 @@ plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: 
 * The variable Tconst can be used to merge this data set with the other datasets
 * looking at the plots, the variables 'average rating' and 'number of votes' seems to be positively correlated
 
-**Dataset: title_name_basics**
+***Dataset: title_name_basics***
 ```{r setup, include = FALSE}
 
 title_name_basics <- read_tsv("../../data/name.basics.tsv.gz", n_max = 200)
@@ -119,7 +117,6 @@ summary(title_name_basics)
 ```
 
 **In this dataset, there are 6 columns**
-
 Column 1: nconst
 *this is the identifier*
 Column 2: primaryName
