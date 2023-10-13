@@ -2,13 +2,9 @@
 output:
   html_document: default
   pdf_document: default
----
-git fetch origin
-git checkout 121-add-star_person-dataset-to-rmarkdown-analysis---
 title: "Team 8 R Markdown Document"
-output: html_document
 date: "2023-09-12"
-author: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
+authors: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
 ---
 
 # Group 8 Imdb Ratings Markdown
@@ -25,39 +21,9 @@ Loading the `tidyverse` package:
 library(tidyverse)
 ```
 
-### Comment lex 8-10-23, Do we need to create a cell here that downloads all the datasets?
-
-
-### Comment lex 8-10-23, I think this function can be deleted out of the report right?
-
-If you have your current working directory where your markdown file is, `setwd('../../data/dataset1')` should direct you to the databases. But since each database is in another folder, a function can come handy.
-
-```{r}
-wd_changer <- function(x) {
-  wd <- str_c('../../data/dataset', x)
-  setwd(wd)
-} #I think this easy function is pretty self-explanatory.
-
-#Let's try if the function works.
-
-wd_changer(0)
-
-getwd() 
-
-#Apparently, it does!
-
-``` 
-
-
 ***Dataset: title.basics ***
 
 ```{r message=FALSE, warning=FALSE}
-
-wd_changer(2) #My file is at the second database folder. 
-
-### If the function is deleted this one can also be deleted
-
-
 
 title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
 #Loading only first 200 rows of the data just for exploratory data analysis.
@@ -65,7 +31,6 @@ title_basics <- read_tsv('../../data/title.basics.tsv.gz', n_max = 200)
 ```
 
 **After this first step, let's take a look at the variables and produce some explanatory plots**
-### Comment lex 8-10-23, above is stated that some explanatory plots will be created, but there are none created below right?
 
 ```{r}
 
@@ -97,9 +62,6 @@ column 8: runtimeMinutes
 column 9: genres
 *This is a character column that includes an array of values. A column containing two values is not recommended for a tidy dataset and thus, the values should be filtered and separated for further analysis*
 
-###comment lex 08-10-23, Do we want to include what is underneath this comment? I think it should be modified to have the same construct as the "main takeaways" of the other datasets 
-
-
 ####Main Takeaways
 
 * titleType can be converted into a factor,
@@ -107,9 +69,6 @@ column 9: genres
 * endYear is unnecessary for movies,
 * runtimeMinutes should be converted into an integer,
 * genres should be filtered and split for a tidier frame.
-
-
-
 
 ***Dataset: title_ratings ***
 
@@ -133,21 +92,12 @@ column 3:num_votes
 ```{r}
 summary(title_ratings$averageRating)
 summary(title_ratings$numVotes)
-
 ```
 
 **A histogram with the distribution of the averga ratings**
 ```{r}
 hist(title_ratings$averageRating, main = "Distribution of Average Ratings", xlab = "Average Rating")
 ```
-
-**Boxplot number of votes** 
-
-### comment lex 08-10-23, I think we can delete this one right?I do not know if this is really valuable.
-```{r}
-boxplot(title_ratings$numVotes, main = "Box Plot of number of votes")
-```
-
 
 **scatter plot of the relationship between the average rating and the nuber of votes**
 ```{r}
@@ -157,76 +107,12 @@ plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: 
 
 **Main takeaways**
 * The variable Tconst can be used to merge this data set with the other datasets
-* looking at the plots, the variables 'averge rating' and 'number of votes' seems to be positively correlated
-
-
-###Comment lex 8-10-23 this whole section below can be deleted right? As we do not use this dataset.
-
-reading the data set: title_basics_ratings (Thomas)
-reading the data set: title_principles (Thomas)
-
-
-```{r}
-title_principals <- read_tsv("../../data/title.principals.tsv")
-```
-
-```{r}
-view(title_principals)
-```
-
-Some calculations and code to get a feel for the dataset
-```{r}
-# Display unique values in the 'job' column
-unique_jobs <- unique(title_principals$job)
-
-# Count how many times each unique value appears
-job_counts <- table(title_principals$job)
-
-# Create a data frame to display the results
-job_counts_df <- data.frame(Job = unique_jobs, Count = job_counts)
-
-# Print the unique job values and their counts
-print(job_counts_df)
-
-```
-
-Next we look at the number of unique titles that are in the dataset
-
-```{r}
-# Calculate the number of unique values in the 'tconst' column
-num_unique_tconst <- length(unique(title_principals$tconst))
-
-# Print the number of unique 'tconst' values
-print(num_unique_tconst)
-```
-
-We do the same for the crew of the titles
-```{r}
-# Calculate the number of unique values in the 'nconst' column
-num_unique_nconst <- length(unique(title_principals$nconst))
-
-# Print the number of unique 'nconst' values
-print(num_unique_nconst)
-```
-
-**In this dataset, there are 6 columns**
-
-1. 'tconst' is a unique alphanumeric identifier assigned to a movie. This identifier can be used in order to merge with other datasets provided by IMDb. There are 9,095,203 unique titles in this dataset.
-2. 'ordering' refers to a number to uniquely identify rows for a given titleId. 
-3. 'nconst' is similar to the 'tconst', the only difference is that the 'nconst' identifies crew/cast. There are 5,088,146 unique persons in this dataset.
-4. 'job' refers to the job of the person ('nconst') fullfiled in a specific title ('tconst').
-5. 'characters' shows the name of the character that is played by the respective person. If this is inapplicable the given value is '\N'
-
-**Main takeaways**
-This dataset does not consit of any variable that, on it self, ads to the relevance of our research. However, this dataset could serve a purpose in merging different IMDb datasets. 
-
-
+* looking at the plots, the variables 'average rating' and 'number of votes' seems to be positively correlated
 
 **Dataset: title_name_basics**
 ```{r setup, include = FALSE}
 
-title_name_basics <- read_tsv("name.basics.tsv.gz", n_max = 200)
-#Loading only first 200 rows of the data just for exploratory data analysis.
+title_name_basics <- read_tsv("../../data/name.basics.tsv.gz", n_max = 200)
 View(title_name_basics)
 summary(title_name_basics)
 
@@ -249,7 +135,8 @@ Column 6: knownForTitles
 
 **Main takeaways**
 * In order to sample for actress/actor only, the primaryProfession column should be filtered
-* In order to connect this datatable to the title_name_basics datatable, the knownForTitles column should be destringed
+* Once the primaryProfession column is filtered, it can be merged with the starPower dataset (later specified in this Rmarkdown)
+* In order to connect this datatable to the title_name_basics datatable, the knownForTitles column should be destringed and split into different columns
 * birthYear and deathYear are not relevant for this research
 
 
@@ -261,16 +148,22 @@ starpower <- read_csv("../../data/starPower.csv")
 
 ```
 
-The starpower dataset contains 6 columns:
-* nconst: This column serves as a unique IMDb identifier for distinguishing various members of a title's crew or cast.
-* primaryName: As the name suggests, this column contains the primary names of individuals.
-* primaryProfession: This column, too, is self-explanatory. It's worth noting that a person may possess multiple professions, which can result in their appearance in the dataset multiple times.
-* Rank: The "Rank" column specifies the global ranking of the individual at the time of data scraping. For more details, please consult the Readme.
-* Earnings: This column displays the earnings of each respective individual in USD.
-* Category: The "Category" column simplifies the "primaryProfession" column by categorizing individuals into either the "actor" or "director" category.
+**The starpower dataset contains 6 columns**
 
-Namely the columns 'Rank' and 'Earnings' prove interseting for futher statistical analysis. Therefore we now perform a view plot to gain insights in the dataset.
+Column 1: nconst
+*This column serves as a unique IMDb identifier for distinguishing various members of a title's crew or cast.*
+Column 2: primaryName 
+*As the name suggests, this column contains the primary names of individuals.*
+Column 3: primaryProfession
+*This column, too, is self-explanatory. It's worth noting that a person may possess multiple professions, which can result in their appearance in the dataset multiple times.*
+Column 4:  Rank
+*The "Rank" column specifies the global ranking of the individual at the time of data scraping. For more details, please consult the Readme.*
+Column 5: Earnings
+*This column displays the earnings of each respective individual in USD.*
+Column 6: Category
+*The "Category" column simplifies the "primaryProfession" column by categorizing individuals into either the "actor" or "director" category.*
 
+*box plot of the Rank variable*
 ```{r}
 # Create the box plot
 starpower %>%
@@ -281,10 +174,7 @@ starpower %>%
   theme_minimal()
 ```
 
-eventhough the box plot goes from 1 to 15000, we see that most actors rank somewhere between 2300 - 7300 in the world.
-
-Next lets take a look at the earnings column
-
+*Histogram of the earnings column*
 ```{r}
 starpower %>%
   filter(!is.na(earnings), earnings < 1000000) %>% # Adjust the threshold as needed
@@ -297,10 +187,7 @@ starpower %>%
 
 ```
 
-Here we can see that a majority of the stars earn well below 250k and that the amount of stars decreases as the earnings get higher generally.
-
-Next up we can investigate the relations between the rank and the earnings. We will do this via a correlation matrix.
-
+*correlation matrix between the columns earnings and Rank*
 ```{r}
 # Filter out rows with missing values in "earnings" and "Rank"
 starpower <- starpower %>% filter(!is.na(earnings), !is.na(Rank))
@@ -313,4 +200,9 @@ cat("Correlation between Earnings and Rank:", correlation_matrix)
 
 ```
 
-The correlation coefficient of -0.3321853 indicates a moderate negative relationship between 'Earnings' and 'Rank.' In practical terms, as individuals' earnings increase, their global rank tends to improve (lower rank numbers), and vice versa. This suggests that higher earnings are associated with better global ranks.
+**Main takeaways**
+* The variable 'nconst' can be used for merging with the other datasets
+* The columns 'Rank' and 'earnings' prove interesting for futher statistical analysis.
+* Even though the box plot goes from 1 to 15,000, we see that most actors rank somewhere between 2,300 - 7,300 in the world.
+* From the histogram we can see that a majority of the stars earn well below 250k and that the amount of stars decreases as the earnings get higher generally.
+* The correlation coefficient of -0.332 indicates a moderate negative relationship between 'earnings' and 'Rank.' In practical terms, as individuals' earnings increase, their global rank tends to improve (lower rank numbers), and vice versa. This suggests that higher earnings are associated with better global ranks.

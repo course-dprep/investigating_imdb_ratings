@@ -1,6 +1,10 @@
 ---
 title: "Linear_regression"
-output: html_document
+output:
+html_document:
+    self_contained: false
+    keep_md: true
+    path: "../../gen/analysis/output"
 date: "2023-10-06"
 author: 'Team 8'
 ---
@@ -9,19 +13,19 @@ author: 'Team 8'
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Before starting the linear regression, we are going to load the final megred dataset and summarize it
+# Loading the final megred dataset and summarization
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
-final_merged_dataset <- read_tsv ("../../data-preparation/output/final_merged_dataset.tsv")
+final_merged_dataset <- read_tsv ("../../gen/data-preparation/output/final_merged_dataset.tsv")
 final_merged_dataset 
 summary(final_merged_dataset)
 ```
 
 When you take a look at the output, you'll notice that there are dummy variables for certain category's. We have created these dummy's because those are the most often occurring genres in the dataset.
 
+# Linear regression on the final dataset
 
-# We will now proceed to perform a linear regression on the final dataset
 ```{r}
 
 formula <- averageRating ~ numVotes + mean_ranking + time_since_release + is_superstar + Drama + Comedy + Documentary + Romance + Action + Other
@@ -34,9 +38,10 @@ summary(dataset_lm1)
 When looking at the output, we notice that all the variables have a significant effect on the average rating except Comedy genre.
 
 # Assumptions
+
 In order to check for assumptions, we run a Kolmogorov Smirnov test to test for normality, and a Durbin-Watson test to check if the residuals are correlated
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
 # Normality
 ks.test(dataset_lm1$residuals, "pnorm", mean=mean(dataset_lm1$residuals), sd=sd(dataset_lm1$residuals))
 
@@ -55,7 +60,7 @@ The output of the Kolmogorov-Smirnov test shows us that we can reject the null-h
 
 In our final part of the linear regression analysis, we check how our model performs at prediciting the average rating, compared to the actual average rating
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
 # Predicted values from the model
 predicted_lm <- predict(dataset_lm1)
 
@@ -66,14 +71,15 @@ plot(final_merged_dataset_nona$averageRating, predicted_lm, xlab = "Actual", yla
 abline(0, 1, col = "red")  # Add a 45-degree reference line
 ```
 
-
 When we take a look at the scatter plot, we can conclude that our model doesn't perform well with predicting the average rating. What's even more strange, is that our model predicts ratings higher than 10, which isn't possible.
 
 After realizing that neither the assumptions nor the predictions align, we decided to transform the dependent variable for a final glimpse. The calculation of the RMSE will be useful to compare the difference.
 
 # Transformations
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+
+library(MASS)
 
 # Transformations of the dependent variable
 
@@ -120,22 +126,55 @@ summary(model_mc)
 summary(model_boxcox)
 
 ```
+
 # Reading the model
 
 We've tried square root, log, mean centering and box-cox transformations and the highest R squared is obtained via the box-cox transformation. It suits because there is a heteroscasdisticity and a not normally distributed dependent variable. Yet, 0.19 is not that much of a fulfilling score.
 
 When we read the model, the mean_ranking and is_superstar variables are in a negative relationship with the dependent variable. In addition, Romance and Action genres also impact the averageRating negatively.
 
+# Comparing TV Series with Movies
 
-# Conclusion
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
 
-* High rated movies are the ones with high numbers of votes, long time since release, in the genres of drama, comedy or documentary.
+final_merged_dataset_means <- final_merged_dataset %>% group_by(titleType)
 
-* Ranking of the actor or if the actor is a superstar has a negative effect on the averageRating. In addition, genres of Romance, Action and Other also pull the averageRating of a movie down.
+group_movies <- final_merged_dataset_means %>% filter(titleType == 'movie')
+
+group_series <- final_merged_dataset_means %>% filter(titleType == 'tvSeries')
+
+group_movies_t <- group_movies['averageRating']
+
+group_series_t <- group_series['averageRating']
+
+t.test(group_movies_t, group_series_t, alternative = "two.sided")
+
+## Regression
+
+lm_series <- lm(formula, data = group_series)
+
+summary(lm_series)
+
+```
+
+The differences between the means of movies and tvSeries are significant. When the model for linear regression for the tvSeries is analyzed, it can be seen that is_superstar plays no significant role in the rating of the series.
+
+What's interesting is that Drama category positively and significantly contributes to the average rating of the series whereas Romance is significantly correlated but in a negative direction. Action, Comedy or Documentary are not correlated at all and Other category has a negative and significant impact.
+
+# Conclusions
+
+-   High rated movies are the ones with high numbers of votes, long time since release, in the genres of drama, comedy or documentary.
+
+-   Ranking of the actor or if the actor is a superstar has a negative effect on the averageRating. In addition, genres of Romance, Action and Other also pull the averageRating of a movie down.
+
+-   TV Series has a different rating model compared to movies and their ratings are significantly different than the movies.
+
+-   TV series are much more genre dependent compared to the movies.
 
 # Limitations
 
-The NA values are left unbothered. They could've been imputed or removed.
+-  The NA values are left unbothered. They could've been imputed or removed.
 
-The bollywood movies are not filtered out. This might explain the negative relationship between mean_ranking and is_superstar variables.
+-  The bollywood movies are not filtered out. This might explain the negative relationship between mean_ranking and is_superstar variables.
 
+-  A model with different variables might've needed for assessing the difference between tvSeries and movies.
