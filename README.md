@@ -91,9 +91,9 @@ To run the code, follow these instructions:
 1. Fork this repository
 2. Open your command line / terminal and run the following code:
 ```
-git clone https://github.com/{your username}/team-project-team_8
+git clone https://github.com/{your username}/investigating_imdb_ratings
 ```
-3. Set your working directory to `team-project-team_8` and run the following command:
+3. Set your working directory to `investigating_imdb_ratings` and run the following command:
 ```
 make
 ```
