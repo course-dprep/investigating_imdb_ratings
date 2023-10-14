@@ -143,4 +143,4 @@ We've tried for different transformations and found that boxcox transformation i
 
 -  Romance is significantly correlated but in a negative direction.
 
-For detailed information, **linear_regression_analysis.html** file is helpful.
+For detailed information, **gen/analysis/output/linear_regression_analysis.html** file is helpful.
