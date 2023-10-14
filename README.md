@@ -113,3 +113,29 @@ c. Finally, analysis is done according to the structure below:
 ```
 make clean
 ```
+## Analysis
+
+After the data set is ready for analysis, we've run linear regression analyses to evaluate the effect of actors on the `averageRating` column and the difference of contributors to the averageRating of tvSeries and movies of our data set.
+
+A brief description of the findings can be found below:
+
+
+-  When looking at the output, we notice that all the variables have a significant effect on the average rating except Comedy genre.
+
+We've tried for different transformations and found that boxcox transformation is the most suitable. Here's the output of transformed variable:
+
+
+
+-  When we read the model, the mean_ranking and is_superstar variables are in a negative relationship with the dependent variable.
+
+-  Romance and Action genres also impact the averageRating negatively.
+
+##### Movies and Series Difference
+
+-  When the model for linear regression for the tvSeries is analyzed, it can be seen that is_superstar plays no significant role in the rating of the series. 
+
+-  Drama category positively and significantly contributes to the average rating of the series. 
+
+-  Romance is significantly correlated but in a negative direction.
+
+For detailed information, **linear_regression_analysis.html** file is helpful.
