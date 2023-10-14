@@ -119,7 +119,10 @@ make clean
 
 After the data set is ready for analysis, we've run linear regression analyses to evaluate the effect of actors on the `averageRating` column and the difference of contributors to the averageRating of tvSeries and movies of our data set.
 
-A brief description of the findings can be found below:
+#### Initial Regression Output:
+
+![First Regression](src/analysis/linear_regression_table.png)
+
 
 
 -  When looking at the output, we notice that all the variables have a significant effect on the average rating except Comedy genre.
