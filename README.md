@@ -121,21 +121,21 @@ After the data set is ready for analysis, we've run linear regression analyses t
 
 #### Initial Regression Output:
 
-![First Regression](src/analysis/linear_regression_table.png)
-
-
+![First Regression](src/paper/linear_regression_table.png)
 
 -  When looking at the output, we notice that all the variables have a significant effect on the average rating except Comedy genre.
 
 We've tried for different transformations and found that boxcox transformation is the most suitable. Here's the output of transformed variable:
 
-
+![Box-Cox Regression](src/paper/linear_regression_table_boxcox.png)
 
 -  When we read the model, the mean_ranking and is_superstar variables are in a negative relationship with the dependent variable.
 
 -  Romance and Action genres also impact the averageRating negatively.
 
 ##### Movies and Series Difference
+
+![Series Linear Regression](src/paper/linear_regression_table_series.png)
 
 -  When the model for linear regression for the tvSeries is analyzed, it can be seen that is_superstar plays no significant role in the rating of the series. 
 
