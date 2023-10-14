@@ -11,9 +11,11 @@ Contributors:
  
 ## Project Description
 
-In the current digital era of entertainment, where rating systems have a significant impact, it is crucial to understand which factors might influence these ratings. It is clear that external factors such as viewer's satisfaction, perceived quality of the title (movie or tv series), and the place of watching the title might all affect the rating given by the viewer. However, from the perspective of creators, it might be way more interesting to look at factors that can internally be decided. What is the influence of certain actors on title ratings? Which genres tend to be rated higher? And does the consumer enjoy longer or shorter titles? 
+In the current digital era of entertainment, where rating systems have a significant impact on many aspects, it is crucial to understand which factors might influence these ratings. It is clear that external factors such as viewer's satisfaction, perceived quality of the title (movie or tv series), and the place of watching the title might all affect the rating given by the viewer. However, from the perspective of creators, it might be way more interesting to look at factors that can internally be decided. What is the influence of certain actors on title ratings? Which genres tend to be rated higher? And does the consumer enjoy longer or shorter titles? 
 
-The current research aims to deliver useful insights for content makers about which factors actually influence ratings and whether there are differences between the way in which movies are rated versus tv series. 
+The current research aims to deliver useful insights for content makers about which factors actually influence ratings and whether there are differences between the way in which movies are rated versus tv series. Therefore, we have formulated the following research question:
+
+*What is the effect of title genres, actors' rating, runtime of the title, and time elapsed since release on the average rating of the title, and how does the effect depend on whether the title is a movie or a tv series?*
 
 ## Data Availability and Provenance Statements
 
