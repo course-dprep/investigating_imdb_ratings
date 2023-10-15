@@ -133,7 +133,7 @@ We've tried for different transformations and found that boxcox transformation i
 
 -  Romance and Action genres also impact the averageRating negatively.
 
-##### Movies and Series Difference
+##### Regression Output for the Series
 
 ![Series Linear Regression](src/paper/linear_regression_table_series.png)
 
