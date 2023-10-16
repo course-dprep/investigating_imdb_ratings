@@ -1,17 +1,17 @@
 ---
 output:
-  html_document: default
+html_document: default
   pdf_document: default
 title: "Team 8 R Markdown Document"
 date: "2023-09-12"
 authors: 'Kay van der Linden, Lex Vogels, Floris van Berloo, Thomas Gadellaa, Mehmet Eren Erdoğan'
 ---
 
-# Group 8 Imdb Ratings Markdown
+# Group 8 IMDb Data Exploration Markdown
 
 ## Introduction
 
-This is the Markdown document for group 8. Each member contributed on the markdown and did their own analysis about imdb datasets. After each individual presented their analysis, a joint markdown file is created.
+In this document, you can read about data exploration of the used raw datasets. Therefore, we use the results and findings of this document as a starting point for the eventual data preparation the will be done before moving to analysis. 
 
 ## Pre - Analysis
 
@@ -21,11 +21,11 @@ Loading the `tidyverse` package:
 library(tidyverse)
 ```
 
-***Dataset: title.basics ***
+***Dataset: title_basics ***
 
 ```{r message=FALSE, warning=FALSE}
 
-title_basics <- read_tsv('../../data/title.basics.tsv', n_max = 200)
+title_basics <- read_tsv('../../data/title_basics.tsv', n_max = 200)
 #Loading only first 200 rows of the data just for exploratory data analysis.
 
 ```
@@ -55,7 +55,7 @@ column 5: isAdult
 column 6: startYear:
 *This is the release year of the product. This prototype only includes earliest years so maximum and minimum values can be obtained if the whole database is loaded in*
 column 7: endYear
-*this character column is only viable for TV Series. It keeps track how many years that the series has lasted. For all other media, the value is '\N'*
+*This character column is only viable for TV Series. It keeps track how many years that the series has lasted. For all other media, the value is '\N'*
 column 8: runtimeMinutes
 *This is a character column but **it should actually be a numeric one**. It represents how long the product is*
 column 9: genres
@@ -71,7 +71,7 @@ column 9: genres
 ***Dataset: title_ratings ***
 
 ```{r}
-title_ratings <- read_tsv("../../data/title.ratings.tsv")
+title_ratings <- read_tsv("../../data/title_ratings.tsv")
 # we are loading the whole dataset as we can make some plots
 ```
 ```{r}
@@ -80,13 +80,13 @@ view(title_ratings)
 
 **In this dataset, there are 3 columns**
 column 1: tconst
-*this is the identifier, each cell represents 1 serie/film*
+*This is the identifier, each cell represents 1 serie/film*
 column2: averageRating
-*this is the averga rating the serie/film got*
+*This is the averga rating the serie/film got*
 column 3:num_votes
 *This is the number of votes that contributed to the rating of the series or movie*
 
-**summary statistics about the variables : average rating and number of votes**
+**Summary statistics about the variables : average rating and number of votes**
 ```{r}
 summary(title_ratings$averageRating)
 summary(title_ratings$numVotes)
@@ -97,19 +97,19 @@ summary(title_ratings$numVotes)
 hist(title_ratings$averageRating, main = "Distribution of Average Ratings", xlab = "Average Rating")
 ```
 
-**scatter plot of the relationship between the average rating and the nuber of votes**
+**Scatter plot of the relationship between the average rating and the nuber of votes**
 ```{r}
 plot(title_ratings$averageRating, title_ratings$numVotes, main = "Scatter Plot: Average Rating vs. Vote Count", 
      xlab = "Average Rating", ylab = "Vote Count", pch = 16, col = "black")
 ```
 
 **Main takeaways**
-* The variable Tconst can be used to merge this data set with the other datasets
+* The variable Tconst can be used to merge this dataset with the other datasets
 * looking at the plots, the variables 'average rating' and 'number of votes' seems to be positively correlated
 
-***Dataset: title_name_basics***
+***Dataset: name_basics***
 ```{r} 
-title_name_basics <- read_tsv("../../data/name.basics.tsv", n_max = 200)
+title_name_basics <- read_tsv("../../data/name_basics.tsv", n_max = 200)
 View(title_name_basics)
 summary(title_name_basics)
 
@@ -136,7 +136,7 @@ Column 6: knownForTitles
 * birthYear and deathYear are not relevant for this research
 
 
-***Dataset: starPower.csv ***
+***Dataset: starPower ***
 
 ```{r}
 
@@ -159,7 +159,7 @@ Column 5: Earnings
 Column 6: Category
 *The "Category" column simplifies the "primaryProfession" column by categorizing individuals into either the "actor" or "director" category.*
 
-*box plot of the Rank variable*
+*Box plot of the Rank variable*
 ```{r}
 # Create the box plot
 starpower %>%
@@ -183,7 +183,7 @@ starpower %>%
 
 ```
 
-*correlation matrix between the columns earnings and Rank*
+*Correlation matrix between the columns earnings and Rank*
 ```{r}
 # Filter out rows with missing values in "earnings" and "Rank"
 starpower <- starpower %>% filter(!is.na(earnings), !is.na(Rank))
